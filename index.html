@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Kyren Omega — Inkborn</title>
+  <meta
+    name="description"
+    content="Kyren Omega — Inkborn. Art, ink, identity."
+  />
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+    :root {
+      --black: #080808;
+      --black-2: #101010;
+      --white: #f4f1eb;
+      --muted: #96938d;
+      --line: rgba(244, 241, 235, 0.14);
+      --accent: #b99b68;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: "Inter", sans-serif;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* NAVIGATION */
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 82px;
+      padding: 0 6vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      background: linear-gradient(
+        to bottom,
+        rgba(8, 8, 8, 0.9),
+        transparent
+      );
+      backdrop-filter: blur(8px);
+    }
+
+    .logo {
+      font-family: "Cinzel", serif;
+      font-size: 1.15rem;
+      letter-spacing: 0.2em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 35px;
+      list-style: none;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+    }
+
+    .nav-links a {
+      color: #c9c6c0;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    .menu {
+      display: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      padding: 130px 8vw 80px;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 700px;
+      height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(
+        circle,
+        rgba(185, 155, 104, 0.13),
+        transparent 65%
+      );
+      right: -250px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.35em;
+      font-size: 0.7rem;
+      margin-bottom: 28px;
+    }
+
+    .hero h1 {
+      font-family: "Cinzel", serif;
+      font-weight: 400;
+      font-size: clamp(4rem, 11vw, 10rem);
+      line-height: 0.88;
+      letter-spacing: -0.04em;
+    }
+
+    .hero h1 span {
+      display: block;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(244, 241, 235, 0.6);
+    }
+
+    .hero-description {
+      max-width: 500px;
+      margin-top: 45px;
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 0.95rem;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 15px;
+      margin-top: 35px;
+    }
+
+    .btn {
+      padding: 15px 27px;
+      border: 1px solid var(--line);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 0.68rem;
+      transition: 0.3s ease;
+    }
+
+    .btn-primary {
+      background: var(--white);
+      color: var(--black);
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent);
+    }
+
+    /* INK ORB */
+
+    .ink-orb {
+      position: absolute;
+      width: 450px;
+      height: 450px;
+      right: 8%;
+      top: 50%;
+      transform: translateY(-50%);
+      border-radius: 50%;
+      background:
+        radial-gradient(
+          circle at 40% 35%,
+          rgba(255,255,255,0.08),
+          transparent 8%
+        ),
+        radial-gradient(
+          circle at 60% 60%,
+          #191919,
+          #030303 68%
+        );
+      box-shadow:
+        0 0 100px rgba(185,155,104,0.08),
+        inset 20px 20px 70px rgba(255,255,255,0.03);
+      animation: float 8s ease-in-out infinite;
+    }
+
+    .ink-orb::after {
+      content: "Ω";
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      font-family: "Cinzel", serif;
+      font-size: 8rem;
+      color: rgba(185,155,104,0.22);
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(-50%) translateX(0);
+      }
+
+      50% {
+        transform: translateY(-53%) translateX(-15px);
+      }
+    }
+
+    /* SECTION */
+
+    section {
+      padding: 120px 8vw;
+    }
+
+    .section-label {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      font-size: 0.68rem;
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      font-family: "Cinzel", serif;
+      font-size: clamp(2.4rem, 5vw, 5rem);
+      font-weight: 400;
+      line-height: 1;
+    }
+
+    /* ABOUT */
+
+    .about {
+      border-top: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10vw;
+    }
+
+    .about-text {
+      color: var(--muted);
+      line-height: 2;
+      font-size: 1rem;
+    }
+
+    .about-text p + p {
+      margin-top: 25px;
+    }
+
+    .manifesto {
+      border-left: 1px solid var(--accent);
+      padding-left: 30px;
+      font-family: "Cinzel", serif;
+      font-size: 1.7rem;
+      line-height: 1.5;
+    }
+
+    /* WORK */
+
+    .work {
+      border-top: 1px solid var(--line);
+    }
+
+    .gallery {
+      margin-top: 60px;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 15px;
+    }
+
+    .piece {
+      min-height: 430px;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 30% 25%, #333, transparent 20%),
+        radial-gradient(circle at 70% 70%, #222, transparent 25%),
+        linear-gradient(135deg, #171717, #050505);
+    }
+
+    .piece:nth-child(1) {
+      grid-column: span 7;
+    }
+
+    .piece:nth-child(2) {
+      grid-column: span 5;
+    }
+
+    .piece:nth-child(3) {
+      grid-column: span 5;
+    }
+
+    .piece:nth-child(4) {
+      grid-column: span 7;
+    }
+
+    .piece::before {
+      content: "";
+      position: absolute;
+      inset: 20px;
+      border: 1px solid rgba(244,241,235,0.12);
+      transform: scale(0.95);
+      transition: 0.5s ease;
+    }
+
+    .piece:hover::before {
+      transform: scale(1);
+      border-color: rgba(185,155,104,0.5);
+    }
+
+    .piece-number {
+      position: absolute;
+      left: 25px;
+      bottom: 22px;
+      font-family: "Cinzel", serif;
+      font-size: 2.5rem;
+      color: rgba(244,241,235,0.15);
+    }
+
+    .piece-name {
+      position: absolute;
+      right: 25px;
+      bottom: 28px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-size: 0.65rem;
+    }
+
+    /* SERVICES */
+
+    .services {
+      border-top: 1px solid var(--line);
+    }
+
+    .service-list {
+      margin-top: 55px;
+      border-top: 1px solid var(--line);
+    }
+
+    .service {
+      display: grid;
+      grid-template-columns: 80px 1fr auto;
+      align-items: center;
+      gap: 30px;
+      padding: 28px 0;
+      border-bottom: 1px solid var(--line);
+      transition: 0.3s ease;
+    }
+
+    .service:hover {
+      padding-left: 15px;
+      border-color: var(--accent);
+    }
+
+    .service-number {
+      color: var(--accent);
+      font-size: 0.7rem;
+    }
+
+    .service h3 {
+      font-family: "Cinzel", serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+    }
+
+    .service p {
+      color: var(--muted);
+      font-size: 0.8rem;
+      margin-top: 7px;
+    }
+
+    .arrow {
+      font-size: 1.5rem;
+      color: var(--muted);
+    }
+
+    /* CONTACT */
+
+    .contact {
+      min-height: 80vh;
+      border-top: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .contact-inner {
+      max-width: 800px;
+    }
+
+    .contact h2 {
+      font-family: "Cinzel", serif;
+      font-size: clamp(3rem, 7vw, 7rem);
+      font-weight: 400;
+      line-height: 0.95;
+    }
+
+    .contact p {
+      color: var(--muted);
+      max-width: 500px;
+      margin: 30px auto;
+      line-height: 1.8;
+    }
+
+    .contact-email {
+      display: inline-block;
+      margin-top: 20px;
+      font-family: "Cinzel", serif;
+      font-size: 1.2rem;
+      border-bottom: 1px solid var(--accent);
+      padding-bottom: 8px;
+    }
+
+    /* FOOTER */
+
+    footer {
+      padding: 30px 8vw;
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 850px) {
+
+      .nav-links {
+        display: none;
+      }
+
+      .menu {
+        display: block;
+      }
+
+      .hero {
+        padding-top: 150px;
+      }
+
+      .hero h1 {
+        font-size: clamp(4rem, 18vw, 7rem);
+      }
+
+      .ink-orb {
+        width: 280px;
+        height: 280px;
+        right: -90px;
+        top: 65%;
+        opacity: 0.5;
+      }
+
+      .ink-orb::after {
+        font-size: 5rem;
+      }
+
+      .about {
+        grid-template-columns: 1fr;
+        gap: 60px;
+      }
+
+      .gallery {
+        display: block;
+      }
+
+      .piece {
+        min-height: 350px;
+        margin-bottom: 15px;
+      }
+
+      .service {
+        grid-template-columns: 45px 1fr auto;
+        gap: 15px;
+      }
+
+      .service h3 {
+        font-size: 1.1rem;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+
+    /* FADE IN */
+
+    .fade {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: reveal 1s forwards;
+    }
+
+    .delay-1 {
+      animation-delay: 0.15s;
+    }
+
+    .delay-2 {
+      animation-delay: 0.3s;
+    }
+
+    .delay-3 {
+      animation-delay: 0.45s;
+    }
+
+    @keyframes reveal {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVIGATION -->
+
+  <nav>
+    <a href="#" class="logo">KYREN OMEGA</a>
+
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <div class="menu">☰</div>
+  </nav>
+
+
+  <!-- HERO -->
+
+  <main>
+
+    <section class="hero">
+
+      <div class="hero-content">
+
+        <div class="eyebrow fade">
+          Inkborn / Kyren Omega
+        </div>
+
+        <h1 class="fade delay-1">
+          Born
+          <span>in Ink.</span>
+        </h1>
+
+        <p class="hero-description fade delay-2">
+          Art that leaves a mark.  
+          A visual language built from darkness, precision,
+          identity and the stories we choose to carry.
+        </p>
+
+        <div class="hero-buttons fade delay-3">
+          <a href="#work" class="btn btn-primary">
+            Explore Work
+          </a>
+
+          <a href="#contact" class="btn">
+            Get in Touch
+          </a>
+        </div>
+
+      </div>
+
+      <div class="ink-orb"></div>
+
+    </section>
+
+
+    <!-- ABOUT -->
+
+    <section class="about" id="about">
+
+      <div>
+        <div class="section-label">01 / Philosophy</div>
+
+        <h2 class="section-title">
+          Ink is<br>
+          identity.
+        </h2>
+      </div>
+
+      <div class="about-text">
+
+        <p>
+          <strong>Kyren Omega — Inkborn</strong> is built around
+          the idea that art should feel personal, deliberate and
+          impossible to forget.
+        </p>
+
+        <p>
+          Every line has weight. Every mark has a reason.
+          The work explores the relationship between darkness,
+          form and human expression.
+        </p>
+
+        <div class="manifesto">
+          “Leave something behind
+          that cannot be erased.”
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- WORK -->
+
+    <section class="work" id="work">
+
+      <div class="section-label">02 / Selected Work</div>
+
+      <h2 class="section-title">
+        The Inkborn<br>
+        Archive.
+      </h2>
+
+      <div class="gallery">
+
+        <div class="piece">
+          <div class="piece-number">01</div>
+          <div class="piece-name">Origin</div>
+        </div>
+
+        <div class="piece">
+          <div class="piece-number">02</div>
+          <div class="piece-name">Omega</div>
+        </div>
+
+        <div class="piece">
+          <div class="piece-number">03</div>
+          <div class="piece-name">Void</div>
+        </div>
+
+        <div class="piece">
+          <div class="piece-number">04</div>
+          <div class="piece-name">Ascension</div>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- SERVICES -->
+
+    <section class="services" id="services">
+
+      <div class="section-label">03 / What I Do</div>
+
+      <h2 class="section-title">
+        Made to<br>
+        remain.
+      </h2>
+
+      <div class="service-list">
+
+        <div class="service">
+          <span class="service-number">01</span>
+
+          <div>
+            <h3>Custom Ink</h3>
+            <p>Original concepts created around your story.</p>
+          </div>
+
+          <span class="arrow">↗</span>
+        </div>
+
+        <div class="service">
+          <span class="service-number">02</span>
+
+          <div>
+            <h3>Art Direction</h3>
+            <p>Visual identity, concepts and creative direction.</p>
+          </div>
+
+          <span class="arrow">↗</span>
+        </div>
+
+        <div class="service">
+          <span class="service-number">03</span>
+
+          <div>
+            <h3>Limited Works</h3>
+            <p>Selected pieces created in limited editions.</p>
+          </div>
+
+          <span class="arrow">↗</span>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- CONTACT -->
+
+    <section class="contact" id="contact">
+
+      <div class="contact-inner">
+
+        <div class="section-label">
+          04 / Contact
+        </div>
+
+        <h2>
+          Make your<br>
+          mark.
+        </h2>
+
+        <p>
+          Have an idea, a story, or a piece of yourself
+          that belongs in ink?
+        </p>
+
+        <a
+          class="contact-email"
+          href="mailto:hello@kyrenomega.com"
+        >
+          hello@kyrenomega.com
+        </a>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+    <span>© 2026 Kyren Omega — Inkborn</span>
+    <span>Made in Ink</span>
+  </footer>
+
+
+  <script>
+
+    // Smooth mobile navigation
+
+    const menu = document.querySelector(".menu");
+    const navLinks = document.querySelector(".nav-links");
+
+    menu.addEventListener("click", () => {
+      if (navLinks.style.display === "flex") {
+        navLinks.style.display = "none";
+      } else {
+        navLinks.style.display = "flex";
+        navLinks.style.position = "absolute";
+        navLinks.style.top = "82px";
+        navLinks.style.right = "6vw";
+        navLinks.style.flexDirection = "column";
+        navLinks.style.background = "#080808";
+        navLinks.style.padding = "25px";
+        navLinks.style.border = "1px solid rgba(244,241,235,0.14)";
+      }
+    });
+
+  </script>
+
+</body>
+  </html>
